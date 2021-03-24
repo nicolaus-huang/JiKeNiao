@@ -1,0 +1,7 @@
+<view class="container">
+  <view><image src="{{firstSrc}}" class="star" bindtap="firstClick"/></view>
+  <view><image src="{{secondSrc}}" class="star" bindtap="secondClick"/></view>
+  <view><image src="{{thirdSrc}}" class="star" bindtap="thirdClick" /></view>
+  <view><image src="{{fourthSrc}}" class="star" bindtap="fourthClick"  /></view>
+  <view><image src="{{fifthSrc}}" class="star" bindtap="fifthClick" /></view>
+</view>

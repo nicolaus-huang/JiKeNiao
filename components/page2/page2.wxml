@@ -1,0 +1,109 @@
+<view class="container">
+  <view class="title">
+    <label style="color: #3399FF; font-weight: bold; font-size: 1.3rem;">极客鸟服务反馈表</label>
+  </view>
+
+  <view class="show">
+    <view style="margin-left: 5%; margin-bottom: 7px; font-weight: bold;">您的反馈是我们最大的财富！</view>
+    <view style="color: #3366FF; font-weight: bold; font-size: 0.75rem; margin-left: 5%; margin-right: 5%;" >注意：请您务必如实填写，这关系到志愿者的志愿学时分配和日后部门发展，谢谢配合</view>
+  </view>
+
+  <view class="divider"></view>
+
+  <view class="former">
+    <view id="userNameMajor">
+      <view class="inputContainer">
+        <label class="inputerLabel" style="color: red;">*</label>
+        <label class="inputLabel">1.您的姓名及专业</label>
+      </view>
+      <input class="inputer" value="{{userNameMajor}}" bindinput="userNameMajorInput"/>
+    </view>
+
+    <view id="userContact">
+      <view class="inputContainer">
+        <label class="inputerLabel" style="color: red;">*</label>
+        <label class="inputLabel">2.您的联系方式（QQ/电话）</label>
+      </view>
+      <input class="inputer" value="{{userContact}}" bindinput="userContactInput"/>
+    </view>
+
+    <view id="serverContent">
+      <view class="inputContainer">
+        <label class="inputerLabel" style="color: red;">*</label>
+        <label class="inputLabel">3.服务内容</label>
+        <label style="color: grey; font-size: 0.8rem;">【多选题】</label>
+      </view>
+      <checkbox-group class="inputer" bindchange="getChecked">
+        <view>
+          <checkbox class="checker" value="reserve"/>
+          <text style="color: black; font-size: 0.8rem;">日常预约</text>
+        </view>
+        <view style="background-color: #A8A8A8; height: 1px; border: 0px; margin-bottom: 0.5px; margin-top: 0.5px; width: 100%;"></view>
+        <view>
+          <checkbox class="checker" value="guide"/>
+          <text style="color: black; font-size: 0.8rem;">产品导购</text>
+        </view>
+      </checkbox-group>
+    </view>
+
+    <view id="problemShow">
+      <view class="inputContainer">
+        <label class="inputerLabel" style="color: red;">*</label>
+        <label class="inputLabel">4.故障简述</label>
+      </view>
+      <input class="inputer" value="{{problemShow}}" bindinput="problemShowInput"/>
+    </view>
+
+    <view id="volunteerName">
+      <view class="inputContainer">
+        <label class="inputerLabel" style="color: red;">*</label>
+        <label class="inputLabel">5.志愿者姓名</label>
+      </view>
+      <input class="inputer" value="{{volunteerName}}" bindinput="volunteerNameInput"/>
+    </view>
+
+    <view id="serverLast">
+      <view class="inputContainer">
+        <label class="inputerLabel" style="color: red;">*</label>
+        <label class="inputLabel">6.本次服务时长</label>
+        <view style="font-size: 0.75rem; color: grey; margin-top: 5px;">您所填写的服务时长将可能会被认定为志愿活动进行时间，有关志愿者的活动评定，十分重要。请如实填写，感谢配合！</view>
+      </view>
+      <input class="inputer" placeholder="请填写天数" value="{{serverLast}}" bindinput="serverLastInput" />
+    </view>
+
+    <view id="serverTime">
+      <view class="inputContainer">
+        <label class="inputerLabel" style="color: red;">*</label>
+        <label class="inputLabel">7.您提交预约求助的时间</label>
+      </view>
+      <picker mode="date" start="2021-03-24" end="2025-03-24" value="{{date}}" bindchange="pickerChange">
+        <view style="display: flex; width: 80%; margin-left: 10%; padding: 2px; border: 1px solid #A8A8A8; border-radius: 4px;">
+          <view style="display: flex; align-items: center;">
+            <image src="../../assets/images/time.png" style="width: 1rem; height: 1rem;" />
+          </view>
+          <input style="color: grey; border-left: 0px; flex-grow: 1; padding-left: 10px;" value="{{date}}"/>
+        </view>
+      </picker>
+    </view>
+
+    <view id="activityAssess">
+      <view class="inputContainer">
+        <label class="inputerLabel" style="color: red;">*</label>
+        <label class="inputLabel">8.活动体验评分</label>
+      </view>
+     <assess width="80%" marginLeft="10%" bind:getStarNum="getStarNum"></assess>
+    </view>
+
+    <view id="volunteerAssess">
+      <view class="inputContainer">
+        <label class="inputerLabel" style="color: blue;">*</label>
+        <label class="inputLabel">9.给志愿者的评语</label>
+        <view style="font-size: 0.75rem; color: grey; margin-top: 5px;">可以写一写参与活动后对志愿者的评价</view>
+      </view>
+      <input class="inputer" value="{{volunteerAssess}}" bindinput="volunteerAssessInput"/>
+    </view>
+  </view>
+
+  <button class="commitBtn" bindtap="btnClick">提交</button>
+</view>
+

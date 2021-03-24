@@ -1,0 +1,20 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/result/result"
+  ],
+  "entryPagePath": "pages/index/index",
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "极客鸟服务",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#fff",
+    "list": [{"pagePath": "pages/index/index","text": "预约"},{"pagePath": "pages/result/result","text": "反馈"}]
+  },
+  "sitemapLocation": "sitemap.json"
+}

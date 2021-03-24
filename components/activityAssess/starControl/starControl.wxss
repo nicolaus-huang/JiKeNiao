@@ -1,0 +1,9 @@
+.container{
+  display: flex;
+  justify-content: space-around;
+}
+
+.star{
+  width: 1rem;
+  height: 1rem;
+}

@@ -1,0 +1,15 @@
+<view class="container" style="width: {{width}}; margin-left: {{marginLeft}};">
+  <view class="header">
+    <view>1</view>
+    <view>2</view>
+    <view>3</view>
+    <view>4</view>
+    <view>5</view>
+  </view>
+  <view style="margin-left: 10px; padding: 2px;">志愿者态度分</view>
+  <star bind:getStarNum="firstAssess"></star>
+  <view style="margin-left: 10px; padding: 2px;">志愿者技术分</view>
+  <star bind:getStarNum="secondAssess"></star>
+  <view style="margin-left: 10px; padding: 2px;">服务综合体验分</view>
+  <star bind:getStarNum="thirdAssess"></star>
+</view>

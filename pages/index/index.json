@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+     "page1": "/components/page1/page1"
+  }
+}
