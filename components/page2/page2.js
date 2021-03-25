@@ -103,8 +103,9 @@ Component({
           //9.给志愿者的评语(string,可为空)
           volunteerAssess: this.data.volunteerAssess
         }
+        console.log(obj)
         wx.request({
-          url: 'http://42.193.96.13:5000:test',
+          url: 'http://42.193.96.13:5000/feedback',
           method: 'post',
           data: JSON.stringify(obj),
           success() {
