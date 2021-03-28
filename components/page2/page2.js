@@ -53,17 +53,68 @@ Component({
     userNameMajorInput(e) {
       this.setData({userNameMajor: e.detail.value})
     },
+    userNameMajorBlur(e) {
+      let pattern = /^[\u4e00-\u9fa5]{4,25}$/
+      if(e.detail.value != "" && e.detail.value.match(pattern) == null) {
+        this.setData({userNameMajor: ""})
+        wx.showModal({
+          title: "输入姓名和专业不合法",
+          showCancel: false
+        })
+      }
+    },
     userContactInput(e) {
       this.setData({userContact: e.detail.value})
+    },
+    userContactBlur(e) {
+      let patternQQ = /^[1-9][0-9]{4,14}$/
+      let patternPhone = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
+      if(e.detail.value != "" && e.detail.value.match(patternQQ) == null && e.detail.value.match(patternPhone) == null) {
+        this.setData({userContact: ""})
+        wx.showModal({
+          title: "QQ号/手机号输入有误",
+          showCancel: false
+        })
+      }
     },
     problemShowInput(e) {
       this.setData({problemShow: e.detail.value})
     },
+    problemShowBlur(e) {
+      let pattern = /[\u4e00-\u9fa5]/
+      if(e.detail.value != "" && e.detail.value.match(pattern) == null) {
+        this.setData({problemShow: ""})
+        wx.showModal({
+          title: "故障简述输入不合法",
+          showCancel: false
+        })
+      }
+    },
     volunteerNameInput(e) {
       this.setData({volunteerName: e.detail.value})
     },
+    volunteerNameBlur(e) {
+      let pattern = /^[\u4e00-\u9fa5]{4,25}$/
+      if(e.detail.value != "" && e.detail.value.match(pattern) == null) {
+        this.setData({volunteerName: ""})
+        wx.showModal({
+          title: "输入志愿者姓名不合法(请输入汉字)",
+          showCancel: false
+        })
+      }
+    },
     serverLastInput(e) {
       this.setData({serverLast: e.detail.value})
+    },
+    serverLastBlur(e) {
+      let pattern = /^[0-9]{0,100}$/
+      if(e.detail.value != "" && e.detail.value.match(pattern) == null) {
+        this.setData({serverLast: ""})
+        wx.showModal({
+          title: "输入天数不合法",
+          showCancel: false
+        })
+      }
     },
     volunteerAssessInput(e) {
       this.setData({volunteerAssess: e.detail.value})

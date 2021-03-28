@@ -9,7 +9,7 @@ Component({
       problemDetail: "",
       //表示是否选择阅读协议,0表示没有,1为有
       checked: 0,
-      disabled: false
+      disabled: false,
   },
   methods: {
     btnClick() {
@@ -27,7 +27,7 @@ Component({
         else{
           var obj = {
             userName: this.data.userName,
-            userMajor: this.data.userMajor,
+            userInfo: this.data.userInfo,
             phoneNumber: this.data.phoneNumber,
             QQ: this.data.QQ,
             computerInfo: this.data.computerInfo,
@@ -57,14 +57,46 @@ Component({
     userNameInput(e) {
       this.data.userName = e.detail.value
     },
-    userMajorInput(e) {
-      this.data.userMajor = e.detail.value
+    userNameBlur(e) {
+      //控制姓名输入为汉字
+      let pattern = /^[\u4e00-\u9fa5]{2,20}$/
+      if(e.detail.value != "" && e.detail.value.match(pattern) == null) {
+        this.setData({userName: ""})
+        wx.showModal({
+          title: "姓名输入不合法",
+          showCancel: false
+        })
+      }
+    },
+    getUserInfo(e) {
+      this.setData({userMajor: e.detail})
     },
     phoneNumberInput(e) {
       this.data.phoneNumber = e.detail.value
     },
+    phoneNumberBlur(e) {
+      //控制手机号输入是数字且符合规范178,630,256,19
+      let pattern = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
+      if(e.detail.value != "" && e.detail.value.match(pattern) == null) {
+        this.setData({phoneNumber: ""})
+        wx.showModal({
+          title: "请输入中国大陆11位非座机手机号",
+          showCancel: false
+        })
+      }
+    },
     QQInput(e) {
       this.data.QQ = e.detail.value
+    },
+    QQBlur(e) {
+      let pattern = /^[1-9][0-9]{4,14}$/
+      if(e.detail.value != "" && e.detail.value.match(pattern) == null) {
+        this.setData({QQ: ""})
+        wx.showModal({
+          title: "QQ号输入不合法",
+          showCancel: false
+        })
+      }
     },
     computerInfoInput(e) {
       this.data.computerInfo = e.detail.value

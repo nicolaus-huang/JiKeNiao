@@ -8,15 +8,15 @@
         <label class="inputerLabel" style="color: red;">*</label>
         <label class="inputLabel">1.姓名</label>
       </view>
-      <input class="inputer" value="{{userName}}" bindinput="userNameInput"/>
+      <input class="inputer" value="{{userName}}" bindinput="userNameInput" bindblur="userNameBlur" />
     </view>
-
-    <view id="userMajor">
+   
+    <view id="userInfo">
       <view class="inputContainer">
         <label class="inputerLabel" style="color: red;">*</label>
-        <label class="inputLabel">2.年级和专业</label>
+        <label class="inputLabel">2.年级和学院和专业</label>
       </view>
-      <input class="inputer" value="{{userMajor}}" bindinput="userMajorInput" />
+      <selector width="80%" marginLeft="10%" bind:getUserInfo="getUserInfo"></selector>
     </view>
     
     <view id="phoneNumber">
@@ -24,7 +24,7 @@
         <label class="inputerLabel" style="color: red;">*</label>
         <label class="inputLabel">3.手机号码</label>
       </view>
-      <input class="inputer" value="{{phoneNumber}}" bindinput="phoneNumberInput"/>
+      <input class="inputer" value="{{phoneNumber}}" bindinput="phoneNumberInput" bindblur="phoneNumberBlur" />
     </view>
 
     <view id="QQ">
@@ -32,9 +32,9 @@
         <label class="inputerLabel" style="color: red;">*</label>
         <label class="inputLabel">4.QQ号码</label>
       </view>
-      <input class="inputer" value="{{QQ}}" bindinput="QQInput"/>
+      <input class="inputer" value="{{QQ}}" bindinput="QQInput" bindblur="QQBlur"/>
     </view>
-
+    
     <view id="computerInfo">
       <view class="inputContainer">
         <label class="inputerLabel" style="color: red;">*</label>

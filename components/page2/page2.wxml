@@ -16,7 +16,7 @@
         <label class="inputerLabel" style="color: red;">*</label>
         <label class="inputLabel">1.您的姓名及专业</label>
       </view>
-      <input class="inputer" value="{{userNameMajor}}" bindinput="userNameMajorInput"/>
+      <input class="inputer" value="{{userNameMajor}}" bindinput="userNameMajorInput" bindblur="userNameMajorBlur" />
     </view>
 
     <view id="userContact">
@@ -24,7 +24,7 @@
         <label class="inputerLabel" style="color: red;">*</label>
         <label class="inputLabel">2.您的联系方式（QQ/电话）</label>
       </view>
-      <input class="inputer" value="{{userContact}}" bindinput="userContactInput"/>
+      <input class="inputer" value="{{userContact}}" bindinput="userContactInput" bindblur="userContactBlur" />
     </view>
 
     <view id="serverContent">
@@ -51,7 +51,7 @@
         <label class="inputerLabel" style="color: red;">*</label>
         <label class="inputLabel">4.故障简述</label>
       </view>
-      <input class="inputer" value="{{problemShow}}" bindinput="problemShowInput"/>
+      <input class="inputer" value="{{problemShow}}" bindinput="problemShowInput" bindblur="problemShowBlur" />
     </view>
 
     <view id="volunteerName">
@@ -59,7 +59,7 @@
         <label class="inputerLabel" style="color: red;">*</label>
         <label class="inputLabel">5.志愿者姓名</label>
       </view>
-      <input class="inputer" value="{{volunteerName}}" bindinput="volunteerNameInput"/>
+      <input class="inputer" value="{{volunteerName}}" bindinput="volunteerNameInput" bindblur="volunteerNameBlur"/>
     </view>
 
     <view id="serverLast">
@@ -68,7 +68,7 @@
         <label class="inputLabel">6.本次服务时长</label>
         <view style="font-size: 0.75rem; color: grey; margin-top: 5px;">您所填写的服务时长将可能会被认定为志愿活动进行时间，有关志愿者的活动评定，十分重要。请如实填写，感谢配合！</view>
       </view>
-      <input class="inputer" placeholder="请填写天数" value="{{serverLast}}" bindinput="serverLastInput" />
+      <input class="inputer" placeholder="请填写天数" value="{{serverLast}}" bindinput="serverLastInput" bindblur="serverLastBlur" />
     </view>
 
     <view id="serverTime">
@@ -81,7 +81,7 @@
           <view style="display: flex; align-items: center;">
             <image src="../../assets/images/time.png" style="width: 1rem; height: 1rem;" />
           </view>
-          <input style="color: grey; border-left: 0px; flex-grow: 1; padding-left: 10px;" value="{{date}}"/>
+          <input style="color: grey; border-left: 0px; flex-grow: 1; padding-left: 10px;" value="{{date}}" disabled="false"/>
         </view>
       </picker>
     </view>
