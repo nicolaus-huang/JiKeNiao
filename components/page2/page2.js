@@ -1,3 +1,5 @@
+var wxDraw = require("../../utils/wxdraw.min.js").wxDraw;
+var Shape = require("../../utils/wxdraw.min.js").Shape;
 Component({
   data: {
     //1.专业和姓名

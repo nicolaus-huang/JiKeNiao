@@ -1,84 +1,96 @@
 <view class="container">
+  <view style="position: absolute; width: 100%; height: 350px; background-image: url('/assets/images/bck.jpg'); background-size: cover; top: 0px; z-index: -1;"></view>
   <view class="title">
-    <label style="color: #3399FF; font-weight: bold; font-size: 1.3rem;">极客鸟服务预约表</label>
-  </view>
-  <view class="former">
-    <view id="userName"> 
-      <view class="inputContainer">
-        <label class="inputerLabel" style="color: red;">*</label>
-        <label class="inputLabel">1.姓名</label>
+      <view style="font-weight: bold; font-size: 1.3rem; text-shadow: 1px 1px 1px grey;">
+        <span style="color: #6699ff; letter-spacing: 5px;">极客鸟服务预约表</span>
       </view>
-      <input class="inputer" value="{{userName}}" bindinput="userNameInput" bindblur="userNameBlur" />
     </view>
-   
-    <view id="userInfo">
-      <view class="inputContainer">
-        <label class="inputerLabel" style="color: red;">*</label>
-        <label class="inputLabel">2.年级和学院和专业</label>
+  <view style="width: 90%; margin-left: 5%; background: white; padding-top: 30px; border-radius: 5px; margin-top: 44px; position: relative;">
+    <canvas
+      style="width: 120px; height: 120px; position: absolute; top: -60px; left: 50%; margin-left: -60px;"
+      canvas-id="first"
+      disable-scroll="true"
+    ></canvas>
+    <view class="former">
+      <view id="userName"> 
+        <view class="inputContainer">
+          <label class="inputerLabel" style="color: red;">*</label>
+          <label class="inputLabel">1.姓名</label>
+        </view>
+        <input class="inputer" value="{{userName}}" bindinput="userNameInput" bindblur="userNameBlur"/>
       </view>
-      <selector width="80%" marginLeft="10%" bind:getUserInfo="getUserInfo"></selector>
-    </view>
     
-    <view id="phoneNumber">
-      <view class="inputContainer">
-        <label class="inputerLabel" style="color: red;">*</label>
-        <label class="inputLabel">3.手机号码</label>
+      <view id="userInfo">
+        <view class="inputContainer">
+          <label class="inputerLabel" style="color: red;">*</label>
+          <label class="inputLabel">2.年级和学院和专业</label>
+        </view>
+        <selector width="95%" marginLeft="2.5%" boxSizing="border-box" bind:getUserInfo="getUserInfo"></selector>
       </view>
-      <input class="inputer" value="{{phoneNumber}}" bindinput="phoneNumberInput" bindblur="phoneNumberBlur" />
+      
+      <view id="phoneNumber">
+        <view class="inputContainer">
+          <label class="inputerLabel" style="color: red;">*</label>
+          <label class="inputLabel">3.手机号码</label>
+        </view>
+        <input class="inputer" value="{{phoneNumber}}" bindinput="phoneNumberInput" bindblur="phoneNumberBlur" />
+      </view>
+
+      <view id="QQ">
+        <view class="inputContainer">
+          <label class="inputerLabel" style="color: red;">*</label>
+          <label class="inputLabel">4.QQ号码</label>
+        </view>
+        <input class="inputer" value="{{QQ}}" bindinput="QQInput" bindblur="QQBlur"/>
+      </view>
+      
+      <view id="computerInfo">
+        <view class="inputContainer">
+          <label class="inputerLabel" style="color: red;">*</label>
+          <label class="inputLabel">5.您的电脑版本和系统版本</label>
+        </view>
+        <input class="inputer" value="{{computerInfo}}" bindinput="computerInfoInput"/>
+      </view>
+
+      <view id="problemDetail">
+        <view class="inputContainer">
+          <label class="inputerLabel" style="color: red;">*</label>
+          <label class="inputLabel">6.电脑故障描述</label>
+        </view>
+        <textarea class="textareaer" value="{{problemDetail}}" bindinput="problemDetailInput"></textarea>
+      </view>
+
+      <view id="proto">
+        <view class="inputContainer">
+          <label class="inputerLabel" style="color: red;">*</label>
+          <label class="inputLabel">7.请阅读选项中的免责协议，如您已了解，请选择下列选项，谢谢配合！</label>
+        </view>
+        <view class="paragragh">
+          <view class="paragraghText">1.极客鸟团队属于志愿服务团队，不收取任何费用。</view>
+          <view class="paragraghText">2.选择极客鸟是您对我们的信任，我们会尽全力做到最好，但出现维修事故在所难免，极客鸟团队不承担相应责任。
+          请您务必确认这一条声明，明确自主承担维修风险后签写本协议。
+          </view>
+          <view class="paragraghText">3.目前极客鸟团队只支持软件，系统等方面的维修，硬件维修暂不在运营业务之内。如果您的电脑问题
+          是由硬件老化，故障，损坏等原因引起，我们会及时告知您并停止维修。我们愿意教您如何处理这样的问题
+          （包括提供电脑导购咨询），但在您确认需要我们继续协助维修您的电脑之前，极客鸟团队不会对您的电脑进行任何操作。
+          </view>
+          <view class="paragraghText">4.对于态度恶劣，不尊重志愿者或其劳动成果的或谎报紧急程度的需求者，
+            我们有权终止或拒绝进行志愿废物，情节严重者将拉入黑名单。
+          </view>
+          <view class="paragraghText">5.我们极客鸟团队愿竭诚为您服务！</view>
+        </view>
+      </view>
     </view>
 
-    <view id="QQ">
-      <view class="inputContainer">
-        <label class="inputerLabel" style="color: red;">*</label>
-        <label class="inputLabel">4.QQ号码</label>
-      </view>
-      <input class="inputer" value="{{QQ}}" bindinput="QQInput" bindblur="QQBlur"/>
-    </view>
-    
-    <view id="computerInfo">
-      <view class="inputContainer">
-        <label class="inputerLabel" style="color: red;">*</label>
-        <label class="inputLabel">5.您的电脑版本和系统版本</label>
-      </view>
-      <input class="inputer" value="{{computerInfo}}" bindinput="computerInfoInput"/>
+    <view class="ensure">
+      <checkbox-group bindchange="getChecked">
+        <checkbox class="checker" />
+      </checkbox-group>
+      <text>我已阅读免责协议！</text>
     </view>
 
-    <view id="problemDetail">
-      <view class="inputContainer">
-        <label class="inputerLabel" style="color: red;">*</label>
-        <label class="inputLabel">6.电脑故障描述</label>
-      </view>
-      <textarea class="textareaer" value="{{problemDetail}}" bindinput="problemDetailInput"></textarea>
-    </view>
+    <button class="commitBtn" bindtap="btnClick">提交</button>
 
-    <view id="proto">
-      <view class="inputContainer">
-        <label class="inputerLabel" style="color: red;">*</label>
-        <label class="inputLabel">7.请阅读选项中的免责协议，如您已了解，请选择下列选项，谢谢配合！</label>
-      </view>
-      <view class="paragragh">
-        <view class="paragraghText">1.极客鸟团队属于志愿服务团队，不收取任何费用。</view>
-        <view class="paragraghText">2.选择极客鸟是您对我们的信任，我们会尽全力做到最好，但出现维修事故在所难免，极客鸟团队不承担相应责任。
-        请您务必确认这一条声明，明确自主承担维修风险后签写本协议。
-        </view>
-        <view class="paragraghText">3.目前极客鸟团队只支持软件，系统等方面的维修，硬件维修暂不在运营业务之内。如果您的电脑问题
-        是由硬件老化，故障，损坏等原因引起，我们会及时告知您并停止维修。我们愿意教您如何处理这样的问题
-        （包括提供电脑导购咨询），但在您确认需要我们继续协助维修您的电脑之前，极客鸟团队不会对您的电脑进行任何操作。
-        </view>
-        <view class="paragraghText">4.对于态度恶劣，不尊重志愿者或其劳动成果的或谎报紧急程度的需求者，
-          我们有权终止或拒绝进行志愿废物，情节严重者将拉入黑名单。
-        </view>
-        <view class="paragraghText">5.我们极客鸟团队愿竭诚为您服务！</view>
-      </view>
-    </view>
+    <view style="font-size: 0.8rem; text-align: center; margin-top: 44px;">Copyright 2021 机电与信息工程学院 极客鸟</view>
   </view>
-
-  <view class="ensure">
-    <checkbox-group bindchange="getChecked">
-      <checkbox class="checker" />
-    </checkbox-group>
-    <text>我已阅读免责协议！</text>
-  </view>
-
-  <button class="commitBtn" bindtap="btnClick">提交</button>
 </view>

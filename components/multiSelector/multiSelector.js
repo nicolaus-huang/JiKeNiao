@@ -1,7 +1,8 @@
 Component({
   properties: {
     width: String,
-    marginLeft: String
+    marginLeft: String,
+    boxSizing: String
   },
   data: {
     userInfo: "",

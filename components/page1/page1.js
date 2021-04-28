@@ -1,15 +1,43 @@
+var wxDraw = require("../../utils/wxdraw.min.js").wxDraw;
+var Shape = require("../../utils/wxdraw.min.js").Shape;
 Component({
   data: {
-      //和Vue不一样这里的数据不是响应式的,要手动实现,下面数据更改时使用自带的setData进行响应式更新
+      // 和Vue不一样这里的数据不是响应式的,要手动实现,下面数据更改时使用自带的setData进行响应式更新
       userName: "",
       userMajor: "",
       phoneNumber: "",
       QQ: "",
       computerInfo: "",
       problemDetail: "",
-      //表示是否选择阅读协议,0表示没有,1为有
+      // 表示是否选择阅读协议,0表示没有,1为有
       checked: 0,
       disabled: false,
+      // 接收画图对象
+      wxDraw: null
+  },
+  lifetimes: {
+    attached () {
+      var context = wx.createCanvasContext('first',this)
+      this.wxCanvas = new wxDraw(context,0,0,100,60)
+
+      let ellipse1 = new Shape('ellipse', { x: 60, y: 60, a: 80, b: 105, 
+        fillStyle: "#9933cc", rotate: Math.PI / 2, strokeStyle: '#9933cc' }, 'mix', true)
+      this.wxCanvas.add(ellipse1)
+      ellipse1.animate("rotate",Math.PI*2.5, {duration: 6000}).start(true)
+
+      let ellipse2 = new Shape('ellipse', { x: 60, y: 60, a: 80, b: 105, 
+        fillStyle: "#66ffff", rotate: Math.PI / 3, strokeStyle: '#66ffff' }, 'mix', true)
+      this.wxCanvas.add(ellipse2)
+      ellipse2.animate("rotate",Math.PI * 2 + Math.PI / 3, {duration: 6000}).start(true)
+
+      let ellipse3 = new Shape('ellipse', { x: 60, y: 60, a: 80, b: 105, 
+        fillStyle: "#6699ff", rotate: Math.PI / 6, strokeStyle: '#6699ff' }, 'mix', true)
+      this.wxCanvas.add(ellipse3)
+      ellipse3.animate({rotate: Math.PI * 2 + Math.PI / 6}, {duration: 4000}).start(true)
+
+      let text = new Shape('text', { x: 60, y: 60, text: "JiKeNiao", fillStyle: "white", align: 'center', fontSize: 16 },'fill', true)
+      this.wxCanvas.add(text)
+    }
   },
   methods: {
     btnClick() {
