@@ -56,6 +56,7 @@ Component({
           var obj = {
             userName: this.data.userName,
             userInfo: this.data.userInfo,
+            userMajor: this.data.userMajor,
             phoneNumber: this.data.phoneNumber,
             QQ: this.data.QQ,
             computerInfo: this.data.computerInfo,

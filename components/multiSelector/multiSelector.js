@@ -116,7 +116,6 @@ Component({
           showCancel: false
         })
       }
-
       //发送数据给父组件
       this.triggerEvent('getUserInfo',this.data.userInfo)
     },
