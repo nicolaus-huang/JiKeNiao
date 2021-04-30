@@ -63,7 +63,7 @@ Component({
             problemDetail: this.data.problemDetail
           }
           wx.request({
-            url: 'http://42.193.96.13:5000/appointment',
+            url: 'https://mylifemeaning.cn:8888/appointment',
             method: 'post',
             data: JSON.stringify(obj),
             success() {
