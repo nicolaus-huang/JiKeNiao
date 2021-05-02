@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "assess": "../activityAssess/activityAssess"
+    "assess": "../activityAssess/activityAssess",
+    "selector": "../multiSelector/multiSelector"
   }
 }

@@ -2,31 +2,33 @@ var wxDraw = require("../../utils/wxdraw.min.js").wxDraw;
 var Shape = require("../../utils/wxdraw.min.js").Shape;
 Component({
   data: {
-    //1.专业和姓名
-    userNameMajor: "",
-    //2.联系方式
+    //1.姓名
+    userNames: "",
+    //2.专业
+    userMajor: "",
+    //3.联系方式
     userContact: "",
-    //3.服务内容
+    //4.服务内容
     serverContent: {
       //未选择是false选择是true
       reserve: false,
       guide: false
     },
-    //4.故障简述
+    //5.故障简述
     problemShow: "",
-    //5.志愿者姓名
+    //6.志愿者姓名
     volunteerName: "",
-    //6.服务时长
+    //7.服务时长
     serverLast: "",
-    //7.提交预约的日期2021-03-21格式
+    //8.提交预约的日期2021-03-21格式
     date: "",
-    //8.1志愿者态度分
+    //9.1志愿者态度分
     attitudeStar: 0,
-    //8.2志愿者技术分
+    //9.2志愿者技术分
     skillStar: 0,
-    //8.3服务综合体验分
+    //9.3服务综合体验分
     serverStar: 0,
-    //9.给志愿者的评语
+    //10.给志愿者的评语
     volunteerAssess: ""
   },
   methods: {
@@ -52,29 +54,33 @@ Component({
       if(obj.length == 2)
         this.setData({serverContent: {reserve: true, guide: true}})
     },
-    userNameMajorInput(e) {
-      this.setData({userNameMajor: e.detail.value})
+    userNameInput(e) {
+      this.setData({userName: e.detail.value})
     },
-    userNameMajorBlur(e) {
-      let pattern = /^[\u4e00-\u9fa5]{4,25}$/
+    userNameBlur(e) {
+      console.log(e.detail.value)
+      let pattern = /^[\u4e00-\u9fa5]{2,5}$/
       if(e.detail.value != "" && e.detail.value.match(pattern) == null) {
-        this.setData({userNameMajor: ""})
+        this.setData({userNames: ""})
+        console.log(this.data.userName)
         wx.showModal({
-          title: "输入姓名和专业不合法",
+          title: "输入姓名不合法(请输入2到5个汉字)",
           showCancel: false
         })
       }
+    },
+    getUserInfo(e) {
+      this.setData({userMajor: e.detail})
     },
     userContactInput(e) {
       this.setData({userContact: e.detail.value})
     },
     userContactBlur(e) {
-      let patternQQ = /^[1-9][0-9]{4,14}$/
       let patternPhone = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
-      if(e.detail.value != "" && e.detail.value.match(patternQQ) == null && e.detail.value.match(patternPhone) == null) {
+      if(e.detail.value != "" && e.detail.value.match(patternPhone) == null) {
         this.setData({userContact: ""})
         wx.showModal({
-          title: "QQ号/手机号输入有误",
+          title: "手机号输入有误",
           showCancel: false
         })
       }
@@ -96,11 +102,11 @@ Component({
       this.setData({volunteerName: e.detail.value})
     },
     volunteerNameBlur(e) {
-      let pattern = /^[\u4e00-\u9fa5]{4,25}$/
+      let pattern = /^[\u4e00-\u9fa5]{2,5}$/
       if(e.detail.value != "" && e.detail.value.match(pattern) == null) {
         this.setData({volunteerName: ""})
         wx.showModal({
-          title: "输入志愿者姓名不合法(请输入汉字)",
+          title: "输入志愿者姓名不合法(请输入2到5个汉字)",
           showCancel: false
         })
       }
@@ -126,34 +132,36 @@ Component({
       // let test = this.data
       // console.log(test.userNameMajor,test.userContact,test.serverContent,test.problemShow,test.volunteerName,test.serverLast,test.date,test.attitudeStar,test.skillStar,test.serverStar,test.volunteerAssess)
 
-      if(this.data.userNameMajor == "" || this.data.userContact == "" || this.data.serverContent == "" || this.data.problemShow == "" || this.data.volunteerName == "" || this.data.serverLast == "" || this.data.date == "" || this.data.attitudeStar == "" || this.data.skillStar == "" || this.data.serverStar == "")
+      if(this.data.userName == "" || this.data.userMajor == "" || this.data.userContact == "" || this.data.serverContent == "" || this.data.problemShow == "" || this.data.volunteerName == "" || this.data.serverLast == "" || this.data.date == "" || this.data.attitudeStar == "" || this.data.skillStar == "" || this.data.serverStar == "")
         wx.showModal({
           title: "上述必要内容没有填写完毕",
           showCancel: false
         })
       else{
         var obj = {
-          //1.专业和姓名(string)
-          userNameMajor: this.data.userNameMajor,
-          //2.联系方式(string)
+          //1.姓名(string)
+          userName: this.data.userNames,
+          //2.专业
+          userMajor: this.data.userMajor,
+          //3.联系方式(string)
           userContact: this.data.userContact,
-          //3.服务内容(string)
+          //4.服务内容(string)
           serverContent: this.data.serverContent,
-          //4.故障简述(string)
+          //5.故障简述(string)
           problemShow: this.data.problemShow,
-          //5.志愿者姓名(string)
+          //6.志愿者姓名(string)
           volunteerName: this.data.volunteerName,
-          //6.服务时长(int)
+          //7.服务时长(int)
           serverLast: this.data.serverLast,
-          //7.提交预约的日期2021-03-21格式(string)
+          //8.提交预约的日期2021-03-21格式(string)
           date: this.data.date,
-          //8.1志愿者态度分(int,0-5代表星星个数)
+          //9.1志愿者态度分(int,0-5代表星星个数)
           attitudeStar: this.data.attitudeStar,
-          //8.2志愿者技术分(int)
+          //9.2志愿者技术分(int)
           skillStar: this.data.skillStar,
-          //8.3服务综合体验分(int)
+          //9.3服务综合体验分(int)
           serverStar: this.data.serverStar,
-          //9.给志愿者的评语(string,可为空)
+          //10.给志愿者的评语(string,可为空)
           volunteerAssess: this.data.volunteerAssess
         }
         console.log(obj)
