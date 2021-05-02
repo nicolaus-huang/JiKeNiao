@@ -31,6 +31,14 @@ Component({
     //10.给志愿者的评语
     volunteerAssess: ""
   },
+  lifetimes: {
+    attached () {
+      wx.showModal({
+        title: "志愿者服务时长涉及到志愿者的志愿学时，虚假填写时长会被极客鸟拉黑",
+        showCancel: false
+      })
+    }
+  },
   methods: {
     //获取并填写预约日期
     pickerChange(e) {
