@@ -166,7 +166,7 @@ Component({
         }
         console.log(obj)
         wx.request({
-          url: 'http://42.193.96.13:5000/feedback',
+          url: 'https://mylifemeaning.cn:8888/feedback',
           method: 'post',
           data: JSON.stringify(obj),
           success() {
