@@ -2,6 +2,8 @@
   "component": true,
   "usingComponents": {
     "assess": "../activityAssess/activityAssess",
-    "selector": "../multiSelector/multiSelector"
+    "selector": "../multiSelector/multiSelector",
+    "search-modal": "../searchModal/searchModal",
+    "ensure-modal": "../ensureModal/ensureModal"
   }
 }

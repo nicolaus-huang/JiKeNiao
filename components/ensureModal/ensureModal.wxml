@@ -1,0 +1,17 @@
+<view class="ensureModal" style="width: {{width}}; height: {{height}}; top: {{Top}}; left: {{Left}}; margin-top: {{marginTop}}; margin-left: {{marginLeft}}; z-index:{{zIndex}}; display:{{display}};">
+  <view style="text-align: center; font-weight: bold; font-size: 1.2rem;">提交信息确认</view>
+  <view style="width: 80%; margin-left: 10%; height: 1px; background-color: grey;"></view>
+  <view class="item">志愿者姓名: {{volunteerName}}</view>
+  <view class="item">预约人姓名: {{userName}}</view>
+  <view class="item">预约时间: {{time}}</view>
+  <view class="item">服务内容: {{content}}</view>
+  <view class="item">故障简述: {{problemShow}}</view>
+  <view class="item">服务时长: {{serverLast}}</view>
+  <view class="item">志愿者态度分: {{attitudeStar}}</view>
+  <view class="item">志愿者技术分: {{skillStar}}</view>
+  <view class="item">服务综合体验分: {{serverStar}}</view>
+  <view style="display: flex; width: 100%;">
+    <view style="text-align: center; font-size: 1.05rem; color: #000099; font-weight: bold; width: 50%;" bindtap="btnEnsure">确认</view>
+    <view style="text-align: center; font-size: 1.05rem; color: #000099; font-weight: bold; width: 50%;" bindtap="btnCancel">取消</view>
+  </view>
+</view>

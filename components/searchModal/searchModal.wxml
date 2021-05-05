@@ -1,0 +1,8 @@
+<view class="searchModal" style="width: {{width}}; height: {{height}}; top: {{Top}}; left: {{Left}}; margin-top: {{marginTop}}; margin-left: {{marginLeft}}; z-index:{{zIndex}}; display:{{display}};">
+  <view style="text-align: center; font-weight: bold; font-size: 1.2rem;">密钥信息查询</view>
+  <view style="width: 80%; margin-left: 10%; height: 1px; background-color: grey;"></view>
+  <view class="item">志愿者姓名: {{volunteerName}}</view>
+  <view class="item">预约人姓名: {{userName}}</view>
+  <view class="item">预约时间: {{time}}</view>
+  <view style="text-align: center; font-size: 1.05rem; color: #000099; font-weight: bold;" bindtap="btnClick">确认</view>
+</view>

@@ -1,6 +1,16 @@
 <view class="container">
-  <view style="position: absolute; width: 100%; height: 1350px; background-image: url('/assets/images/SDU.jpg'); background-size: cover; top: 0px; z-index: -1;"></view>
- 
+  <!-- 背景 -->
+  <view style="position: absolute; width: 100%; height: 1110px; background-image: url('/assets/images/SDU.jpg'); background-size: cover; top: 0px; z-index: -1;"></view>
+
+  <!-- 查询确认框 -->
+  <search-modal height="220px" width="80%" Left="50%" Top="50%" marginLeft="-40%" marginTop="-110px" volunteerName="樊华" userName="机器人" time="2021-5-4" zIndex="{{searchZIndex}}" display="{{searchDisplay}}" bind:searchClosed="searchClosed"></search-modal>
+
+  <!-- 提交前的信息确认框 -->
+  <ensure-modal height="400px" width="80%" Left="50%" Top="50%" marginLeft="-40%" marginTop="-200px" volunteerName="樊华" userName="机器人" time="2021-5-4" zIndex="{{ensureZIndex}}" display="{{ensureDisplay}}" serverContent="{{serverContent}}" serverLast="{{serverLast}}" attitudeStar="{{attitudeStar}}" skillStar="{{skillStar}}" serverStar="{{serverStar}}" problemShow="{{problemShow}}" bind:btnCancel="btnCancel" bind:btnEnsure="btnEnsure"></ensure-modal>
+
+  <!-- 模态窗口遮罩层 -->
+  <view style="position: absolute; z-index: {{coverZIndex}}; background-color: rgba(0,0,0,0.6); width: 100%; height:1110px;display: {{coverDisplay}};"></view>
+
   <view class="title">
     <view style="font-weight: bold; font-size: 1.3rem; text-shadow: 1px 1px 1px grey;">
       <span style="color: #FFFFF0; letter-spacing: 5px;">极客鸟服务反馈表</span>
@@ -14,34 +24,22 @@
 
   <view style="height: 1200px; background-color: rgb(255,255,255,0.85); width: 90%; margin-left: 5%; border-radius: 5px; margin-top: 25px;">
     <view class="former">
-      <view id="userName">
-        <view class="inputContainer">
-          <label class="inputerLabel" style="color: red;">*</label>
-          <label class="inputLabel">1.您的姓名</label>
-        </view>
-        <input class="inputer" value="{{userNames}}" bindinput="userNameInput" bindblur="userNameBlur" />
-      </view>
 
-      <view id="userMajor">
+      <view id="orderNumber">
         <view class="inputContainer">
           <label class="inputerLabel" style="color: red;">*</label>
-          <label class="inputLabel">2.您的专业</label>
+          <label class="inputLabel">1.预约单密钥</label>
         </view>
-        <selector width="95%" marginLeft="2.5%" boxSizing="border-box" bind:getUserInfo="getUserInfo"></selector>
-      </view>
-
-      <view id="userContact">
-        <view class="inputContainer">
-          <label class="inputerLabel" style="color: red;">*</label>
-          <label class="inputLabel">3.您的联系方式（电话）</label>
+        <view style="position: relative; margin-left: 2.5%; width: 95%; box-sizing: border-box;">
+          <input class="inputer" style="width: 80%; margin-left: 0px; border-radius: 4px 0px 0px 4px; border-right: 0px;" value="{{orderNumber}}" bindinput="orderNumberInput" bindblur="orderNumberBlur" />
+          <button style="position: absolute; right: 0px; top: 0px; height: 2rem; line-height: 2rem; width: 20%;border: 0px; background-color: #3399FF; border-radius: 0px 4px 4px 0px; color: white; " bindtap="btnSearch">查询</button>
         </view>
-        <input class="inputer" value="{{userContact}}" bindinput="userContactInput" bindblur="userContactBlur" />
       </view>
 
       <view id="serverContent">
         <view class="inputContainer">
           <label class="inputerLabel" style="color: red;">*</label>
-          <label class="inputLabel">4.服务内容</label>
+          <label class="inputLabel">2.服务内容</label>
           <label style="color: grey; font-size: 0.8rem;">【多选题】</label>
         </view>
         <checkbox-group class="inputer" bindchange="getChecked" style="height: 3.6rem;">
@@ -60,47 +58,24 @@
       <view id="problemShow">
         <view class="inputContainer">
           <label class="inputerLabel" style="color: red;">*</label>
-          <label class="inputLabel">5.故障简述</label>
+          <label class="inputLabel">3.故障简述</label>
         </view>
         <input class="inputer" value="{{problemShow}}" bindinput="problemShowInput" bindblur="problemShowBlur" />
-      </view>
-
-      <view id="volunteerName">
-        <view class="inputContainer">
-          <label class="inputerLabel" style="color: red;">*</label>
-          <label class="inputLabel">6.志愿者姓名</label>
-        </view>
-        <input class="inputer" value="{{volunteerName}}" bindinput="volunteerNameInput" bindblur="volunteerNameBlur"/>
       </view>
 
       <view id="serverLast">
         <view class="inputContainer">
           <label class="inputerLabel" style="color: red;">*</label>
-          <label class="inputLabel">7.本次服务时长</label>
+          <label class="inputLabel">4.本次服务时长</label>
           <view style="font-size: 0.75rem; color: grey; margin-top: 5px;">您所填写的服务时长将可能会被认定为志愿活动进行时间，有关志愿者的活动评定，十分重要。请如实填写，感谢配合！</view>
         </view>
         <input class="inputer" placeholder="请填写天数" value="{{serverLast}}" bindinput="serverLastInput" bindblur="serverLastBlur" />
       </view>
 
-      <view id="serverTime">
-        <view class="inputContainer">
-          <label class="inputerLabel" style="color: red;">*</label>
-          <label class="inputLabel">8.您提交预约求助的时间</label>
-        </view>
-        <picker mode="date" start="2021-03-24" end="2025-03-24" value="{{date}}" bindchange="pickerChange">
-          <view style="display: flex; width: 95%; margin-left: 2.5%; padding: 2px; border: 1px solid #A8A8A8; border-radius: 4px;">
-            <view style="display: flex; align-items: center;">
-              <image src="../../assets/images/time.png" style="width: 1rem; height: 1rem;" />
-            </view>
-            <input style="color: grey; border-left: 0px; flex-grow: 1; padding-left: 10px;" value="{{date}}" disabled="false"/>
-          </view>
-        </picker>
-      </view>
-
       <view id="activityAssess">
         <view class="inputContainer">
           <label class="inputerLabel" style="color: red;">*</label>
-          <label class="inputLabel">9.活动体验评分</label>
+          <label class="inputLabel">5.活动体验评分</label>
         </view>
       <assess width="95%" marginLeft="2.5%" bind:getStarNum="getStarNum"></assess>
       </view>
@@ -108,7 +83,7 @@
       <view id="volunteerAssess">
         <view class="inputContainer">
           <label class="inputerLabel" style="color: blue;">*</label>
-          <label class="inputLabel">10.给志愿者的评语</label>
+          <label class="inputLabel">6.给志愿者的评语</label>
           <view style="font-size: 0.75rem; color: grey; margin-top: 5px;">可以写一写参与活动后对志愿者的评价</view>
         </view>
         <input class="inputer" value="{{volunteerAssess}}" bindinput="volunteerAssessInput"/>

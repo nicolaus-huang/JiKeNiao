@@ -1,0 +1,12 @@
+.searchModal{
+  background-color: #EEEEE0;
+  position: absolute;
+  border-radius: 15px;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.item{
+  margin-left: 24px;
+  font-weight: 520;
+}
