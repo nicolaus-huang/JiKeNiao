@@ -1,5 +1,5 @@
 <view class="container">
-  <view style="position: absolute; width: 100%; height: 350px; background-image: url('/assets/images/bck.jpg'); background-size: cover; top: 0px; z-index: -1;"></view>
+  <view style="position: absolute; width: 100%; height: 350px; background-image: url('assets/images/bck.jpg'); background-size: cover; top: 0px; z-index: -1;"></view>
   <view class="title">
       <view style="font-weight: bold; font-size: 1.3rem; text-shadow: 1px 1px 1px grey;">
         <span style="color: #6699ff; letter-spacing: 5px;">极客鸟服务预约表</span>
