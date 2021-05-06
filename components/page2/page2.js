@@ -22,7 +22,7 @@ Component({
     volunteerAssess: "",
     //查询框
     searchDisplay: "none",
-    searchZIndex: 2,
+    searchZIndex: 4,
     //确认框
     ensureDisplay: "none",
     ensureZIndex: 3,
@@ -30,7 +30,12 @@ Component({
     coverDisplay: "none",
     coverZIndex: 1,
     //从服务器获得的订单信息
-    orderInfo: {}
+    orderInfo: {
+      client_name: "",
+      volunteer_name: "",
+      time: ""
+    },
+    test: ""
   },
   lifetimes: {
     attached () {
@@ -65,7 +70,7 @@ Component({
     },
     //密钥检验
     orderNumberBlur(e) {
-      let pattern = /^[a-zA-Z]{30}$/
+      let pattern = /^[a-zA-Z0-9]{30}$/
       if(e.detail.value != "" && e.detail.value.match(pattern) == null) {
         this.setData({orderNumber: ""})
         wx.showModal({
@@ -76,7 +81,7 @@ Component({
     },
     //查询按钮事件
     btnSearch(e) {
-      let pattern = /^[a-zA-Z]{30}$/
+      let pattern = /^[a-zA-Z0-9]{30}$/
       if(this.data.orderNumber.match(pattern) == null){
         //密钥不合法
         this.setData({orderNumber: ""})
@@ -88,31 +93,37 @@ Component({
       else{
         //密钥合法时执行下述操作
         let obj = {
-          "orderNumber": this.data.orderNumber
+          "secret": this.data.orderNumber
         }
-        try{
-          wx.request({
-            url: 'https://mylifemeaning.cn:8888/feedback',
-            method: 'post',
-            data: JSON.stringify(obj),
-            dataType: JSON,
-            success(data) {
-              //显示查询结果
-              this.setData({coverDisplay: "block"})
-              this.setData({searchDisplay: "flex"})
-              //存储返回的信息
-              this.setData({orderInfo: data})
-            },
-            fail() {
+        //wx.request是闭包
+        var that = this
+        wx.request({
+          url: 'https://mylifemeaning.cn:8888/confirm',
+          method: 'post',
+          data: JSON.stringify(obj),
+          success(data) {
+            //存储返回的信息
+            that.setData({orderInfo: data.data})
+            //如果orderInfo值更新后为undefined，那么是密钥出错
+            if(typeof(that.data.orderInfo.client_name) == "undefined") {
               wx.showModal({
-                title: "提交失败",
-                showCancel: false
+                showCancel: false,
+                title: '查无此密钥'
               })
             }
-          })//wx.request
-        } catch(err) {
-          console.log(err)
-        }//try & catch
+            else {
+              //显示查询结果
+              that.setData({coverDisplay: "block"})
+              that.setData({searchDisplay: "flex"})
+            }
+          },
+          fail() {
+            wx.showModal({
+              title: "提交失败",
+              showCancel: false
+            })
+          }
+        })//wx.request
       }//else
     },
     //查询关闭事件
@@ -136,7 +147,7 @@ Component({
     commit() {
       var obj = {
         //1.订单密钥
-        orderNumber: this.data.orderNumber,
+        secret: this.data.orderNumber,
         //2.服务内容(string)
         serverContent: this.data.serverContent,
         //3.故障简述(string)
@@ -152,15 +163,17 @@ Component({
         //6.给志愿者的评语(string,可为空)
         volunteerAssess: this.data.volunteerAssess
       }
+      console.log(obj)
       wx.request({
         url: 'https://mylifemeaning.cn:8888/feedback',
         method: 'post',
         data: JSON.stringify(obj),
-        success() {
+        success(data) {
           wx.showModal({
             title: "您的预约表已经提交",
             showCancel: false
           })
+          console.log(data)
         },
         fail() {
           wx.showModal({
@@ -168,7 +181,7 @@ Component({
             showCancel: false
           })
         }
-      })//wx.request
+      })//提交的wx.request
     },
     //故障简述响应式更新
     problemShowInput(e) {
@@ -212,9 +225,46 @@ Component({
           showCancel: false
         })
       else{
-        //必要信息填写完毕后弹出信息检验弹窗
-        this.setData({coverDisplay: "block"})
-        this.setData({ensureDisplay: "flex"})
+        //在展示信息前需要检验密钥是否正确，如果30位的密钥正确那么正常展示确认框。如果错误则提示输入错误
+        //request内是闭包
+        var that = this
+        let obj = {
+          "secret": this.data.orderNumber
+        }
+        wx.request({
+          url: 'https://mylifemeaning.cn:8888/confirm',
+          method: 'post',
+          data: JSON.stringify(obj),
+          success(data) {
+            if(data.data[0] != '查无此secret'){
+              //存储信息
+              that.setData({orderInfo: data.data})
+              if(typeof(that.data.orderInfo.client_name) == "undefined") {
+                wx.showModal({
+                  showCancel: false,
+                  title: '查无此密钥'
+                })
+              }
+              else{
+                //必要信息填写完毕后弹出信息检验弹窗
+                that.setData({coverDisplay: "block"})
+                that.setData({ensureDisplay: "flex"})
+              }
+            }
+            else{
+              wx.showModal({
+                showCancel: false,
+                title: "密钥错误"
+              })
+            }
+          },
+          fail() {
+            wx.showModal({
+              title: "服务器故障",
+              showCancel: false
+            })
+          }
+        })//wx.request
       }
     }//btnClick
   }//methods

@@ -3,10 +3,10 @@
   <view style="position: absolute; width: 100%; height: 1110px; background-image: url('/assets/images/SDU.jpg'); background-size: cover; top: 0px; z-index: -1;"></view>
 
   <!-- 查询确认框 -->
-  <search-modal height="220px" width="80%" Left="50%" Top="50%" marginLeft="-40%" marginTop="-110px" volunteerName="樊华" userName="机器人" time="2021-5-4" zIndex="{{searchZIndex}}" display="{{searchDisplay}}" bind:searchClosed="searchClosed"></search-modal>
+  <search-modal height="220px" width="80%" Left="50%" Top="50%" marginLeft="-40%" marginTop="-110px" volunteerName="{{orderInfo.volunteer_name}}" userName="{{orderInfo.client_name}}" time="{{orderInfo.time}}" zIndex="{{searchZIndex}}" display="{{searchDisplay}}" bind:searchClosed="searchClosed"></search-modal>
 
   <!-- 提交前的信息确认框 -->
-  <ensure-modal height="400px" width="80%" Left="50%" Top="50%" marginLeft="-40%" marginTop="-200px" volunteerName="樊华" userName="机器人" time="2021-5-4" zIndex="{{ensureZIndex}}" display="{{ensureDisplay}}" serverContent="{{serverContent}}" serverLast="{{serverLast}}" attitudeStar="{{attitudeStar}}" skillStar="{{skillStar}}" serverStar="{{serverStar}}" problemShow="{{problemShow}}" bind:btnCancel="btnCancel" bind:btnEnsure="btnEnsure"></ensure-modal>
+  <ensure-modal height="400px" width="80%" Left="50%" Top="50%" marginLeft="-40%" marginTop="-200px" volunteerName="{{orderInfo.volunteer_name}}" userName="{{orderInfo.client_name}}" time="{{orderInfo.time}}" zIndex="{{ensureZIndex}}" display="{{ensureDisplay}}" serverContent="{{serverContent}}" serverLast="{{serverLast}}" attitudeStar="{{attitudeStar}}" skillStar="{{skillStar}}" serverStar="{{serverStar}}" problemShow="{{problemShow}}" bind:btnCancel="btnCancel" bind:btnEnsure="btnEnsure"></ensure-modal>
 
   <!-- 模态窗口遮罩层 -->
   <view style="position: absolute; z-index: {{coverZIndex}}; background-color: rgba(0,0,0,0.6); width: 100%; height:1110px;display: {{coverDisplay}};"></view>
